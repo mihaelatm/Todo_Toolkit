@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addTodo } from "../../redux/slices/TodoSlice";
 import { uid } from "uid";
 import { useDispatch } from "react-redux";
+import { notification } from "antd";
 
 function Form() {
   const [title, setTitle] = useState("");
@@ -9,14 +10,26 @@ function Form() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    title &&
-      dispatch(
-        addTodo({
-          id: uid(),
-          title,
-          completed: false,
-        })
-      );
+    if (!title) {
+      notification.warning({
+        message: "Empty Input",
+        description: "Please enter a title for the todo!",
+        placement: "topRight",
+      });
+      return;
+    }
+    dispatch(
+      addTodo({
+        id: uid(),
+        title,
+        completed: false,
+      })
+    );
+    notification.success({
+      message: "Todo Added",
+      description: `Todo "${title}" has been added successfully!`,
+      placement: "topRight",
+    });
 
     setTitle("");
   }
