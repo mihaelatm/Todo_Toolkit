@@ -2,7 +2,8 @@ import { useState } from "react";
 import { addTodo } from "../../redux/slices/TodoSlice";
 import { uid } from "uid";
 import { useDispatch } from "react-redux";
-import { notification } from "antd";
+import { notification, Input, Button } from "antd";
+import styles from "./styles.module.css";
 
 function Form() {
   const [title, setTitle] = useState("");
@@ -35,15 +36,20 @@ function Form() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <Input
+        size="large"
         value={title}
         type="text"
         placeholder="Enter new todo"
         onChange={(event) => setTitle(event.target.value)}
+        className={styles.input_form}
       />
-      <input type="submit" value="Add todo" />
+      <Button type="primary" htmlType="submit">
+        Add todo
+      </Button>
     </form>
   );
 }
+
 export default Form;

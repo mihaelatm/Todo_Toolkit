@@ -1,13 +1,12 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.App {
+.list_items {
   display: flex;
   flex-direction: column;
+  width: 600px;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+}
+
+.list {
+  margin-top: 20px;
 }
